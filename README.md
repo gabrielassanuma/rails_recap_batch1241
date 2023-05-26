@@ -161,4 +161,116 @@ Don't forget to import it to application.scss ⤵️ ❗️
   @import "posts/index";
 ```
 
+Push changes to github:
+```bash
+   git add .
+   git commit -m "created posts controller, add index to routes, set index#posts to root, created index posts file added index.sccs"
+   git push origin index-posts
+```
+## Action Create new Post
+
+Create a branch before move on:
+```bash
+  git checkout -b create-posts
+```
+
+Add new route to router.rb:
+```bash
+  get "/posts/new" to: "posts#new"
+  post "posts" to: "posts#create"
+```
+
+Go to app/controllers/posts and add function:
+```bash
+   def new
+    @post = Post.new
+  end
+```
+
+Go to app/views/posts and create file new.html.erb and copy this code:
+```bash
+  <div class="container">
+    <div class="row">
+      <div class="w-60 my-5 d-flex justify-content-center">
+        <%= simple_form_for(@post) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :content %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+```
+
+Let's go back to post controller and add create function:
+```bash
+     def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+```
+
+Time to set-up parameters coming from the view:
+```bash
+    private 
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+  end
+```
+
+Push changes to github:
+```bash
+  git add .
+  git commit -m "created new and create function on post controller, set view for new post, added strong parametes, routes for new and create"
+  git push origin create-posts
+```
+
+## Action Edit new Post
+
+Create a branch before move on:
+```bash
+  git checkout -b edit-posts
+```
+
+Add new route to router.rb:
+```bash
+  get "posts/:id/edit", to: "posts#edit"
+  patch "posts/:id", to: "posts#update"
+```
+
+Go to app/controllers/posts and add function:
+```bash
+  def edit
+    @post = Post.find(params[:id])
+  end
+ ```
+ 
+Go to app/views/posts and create file edit.html.erb and copy this code:
+```bash
+  <div class="container">
+    <div class="row">
+      <div class="w-60 my-5 d-flex justify-content-center">
+        <%= simple_form_for(@post) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :content %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+```
+
+
+
+
+
+
+
+
+
 
