@@ -66,7 +66,7 @@ Run bundle install:
 
 On your seed.rd:
 ```bash
-   require 'faker'
+  require 'faker'
 
   puts "Dropping data..."
   Post.destroy_all
@@ -85,7 +85,7 @@ Check Posts on console:
 
 Push changes to github:
 ```bash
-   ➡️git add .
+   git add .
    git commit -m "created post model, generated db, add faker gem add seeds to post"
    git push origin model-creation 
 ```
@@ -117,7 +117,7 @@ In your config folder open routes.rb add the path for our first action, index wi
 
 Go to app/controllers/posts and add index function:
 ```bash
-   def index
+  def index
     @posts = Post.all
   end
 ```
@@ -182,7 +182,7 @@ Add new route to router.rb:
 
 Go to app/controllers/posts and add function:
 ```bash
-   def new
+  def new
     @post = Post.new
   end
 ```
@@ -204,7 +204,7 @@ Go to app/views/posts and create file new.html.erb and copy this code:
 
 Let's go back to post controller and add create function:
 ```bash
-     def create
+  def create
     @post = Post.new(post_params)
     if @post.save
       redirect_to root_path
@@ -216,7 +216,7 @@ Let's go back to post controller and add create function:
 
 Time to set-up parameters coming from the view:
 ```bash
-    private 
+  private 
 
   def post_params
     params.require(:post).permit(:title, :content)
