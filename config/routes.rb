@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
-  root 'posts#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
-  get "/posts", to: "posts#index"
+  root "posts#index"
+  # get "/posts", to: "posts#index", as: "post_index"
+  # get "/posts/new", to: "posts#new", as: "new_post"
+  # post "posts", to: "posts#create", as: "posts" 
+  # get "posts/:id", to:"posts#show", as: "post"
+  # get "posts/:id/edit", to: "posts#edit", as: "edit_post"
+  # patch "posts/:id", to: "posts#update"
+
+  resources :posts, only: [:index, :new, :create, :edit, :update, :show] do
+    resources :reviews, only: [:new, :create]
+  end
 end
