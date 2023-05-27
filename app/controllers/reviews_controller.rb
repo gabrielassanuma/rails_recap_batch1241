@@ -5,10 +5,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @post = Post.find(params[:post_id])
     @review = Review.new(review_params)
     @review.post = @post
-    @review.save
-    redirect_to posts_path(@post)
+    if @review.save
+      redirect_to post_path(@post)
+    else 
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
