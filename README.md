@@ -179,9 +179,9 @@ Create a branch before move on
   git checkout -b show-post
 ```
 
-Add route for show action:
+Add route for show action, using resources
 ```bash
-  get "posts/:id", to:"posts#show", as: "post"
+ resources :posts, only: [:index, :show]
 ```
 
 Time to implement action on controller:
@@ -230,8 +230,7 @@ Create a branch before move on:
 
 Add new route to router.rb:
 ```bash
-  get "/posts/new" to: "posts#new"
-  post "posts" to: "posts#create"
+  resources :posts, only: [:index,:new, :create, :show]
 ```
 
 Go to app/controllers/posts and add function:
@@ -293,9 +292,7 @@ Create a branch before move on:
 
 Add new route to router.rb:
 ```bash
-  get "posts/:id", to:"posts#show", as: "post"
-  get "posts/:id/edit", to: "posts#edit", as: "edit_post"
-  patch "posts/:id", to: "posts#update"
+  resources :posts, only: [:index,:new, :create, :show, :edit]
 ```
 
 Go to app/controllers/posts and add function:
@@ -394,8 +391,7 @@ Generate Review Controller on terminal:
 On your review controller add the function:
 ```bash
   def new
-    # We need @restaurant in our `simple_form_for`
-    @restaurant = Restaurant.find(params[:restaurant_id])
+    @Post = Post.find(params[:post_id])
     @review = Review.new
   end
 ```
