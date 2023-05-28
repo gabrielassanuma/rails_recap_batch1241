@@ -66,8 +66,6 @@ Run bundle install:
 
 On your seed.rd:
 ```bash
-  require 'faker'
-
   puts "Dropping data..."
   Post.destroy_all
   puts "Creating new seed"
@@ -468,6 +466,14 @@ Change show view:
     </div>
   </div>
 ```
+
+Push changes to Github:
+```bash
+  git add .
+  git commit -m "created model reviews, set associations on models, create route new nested on posts, create action new and create on controller, added view new"
+  git push origin add-review-to-post
+```
+
 
 ## Final touch
 Replace seed.rb
