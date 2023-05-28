@@ -430,7 +430,7 @@ And go back to the controller and set function create and strong params:
   end
 ```
 
-Change show view for this:
+Change show view:
 ```bash
   <div class="container">
     <div class="row">
@@ -492,9 +492,13 @@ Replace seed.rb
     end             
 ```
 
-
-
-
+Drop database, create, migrate and seed again:
+```bash
+  rails db:drop
+  rails db:create
+  rails db:migrate
+  rails db:seed
+```
 
 
 
